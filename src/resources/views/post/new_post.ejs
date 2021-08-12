@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-include('../particals/header') %>
+    <body>
+        <!-- Navigation-->
+        <%-include('../particals/navbar') %>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('/assets/img/create-blog.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Tạo blog riêng cho bạn!</h1>
+                            <span class="subheading">Bạn muốn viết gì ...?</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main -->
+        <div class="container mb-4">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <% if (err) { %>
+                        <div style="color:var(--bs-danger)"><%= err.message %>
+                            <a href="/register/sign-in">Đi đến đăng nhập!</a>
+                        </div>
+                        <br>
+                    <% } %>
+                    <form action="/post/stored" method="POST" enctype="multipart/form-data">
+                        <div class="control-group">
+                            <div class="form-group floating-label-formgroup controls">
+                                <label>Viết tiêu đề:</label>
+                                <input required type="text" class="form-control" placeholder="Viết tiêu đề..." id="title" name="title">
+                            </div>
+                        </div>
+                        <div class="control-group mt-4">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Miêu tả: </label>
+                                <textarea rows="5" class="form-control" id="body" placeholder="Miêu tả ngắn..." name="description"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group mt-4">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Nội dung: </label>
+                                <textarea rows="5" class="form-control" id="body" placeholder="Nội dung..." name="content"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group mt-4">
+                            <div class="form-group floating-label-formgroup controls">
+                                <label>Tác giả: </label>
+                                <input required type="text" class="form-control" placeholder="Tên người viết..." id="Author" name="author">
+                            </div>
+                        </div>
+                        <div class="control-group mt-4">
+                            <div class="form-group floating-label-form-group controls">
+                                <label>Hình nền cho blog của bạn:</label>
+                                <input required type="file" class="form-control" name="img">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" id="sendMessageButton">Tạo blog</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <%-include('../particals/footer') %>
+        <!-- Bootstrap core JS-->
+        <%-include('../particals/script') %>
+    </body>
+</html>

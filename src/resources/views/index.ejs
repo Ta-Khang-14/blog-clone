@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-include('./particals/header') %>
+    <body>
+        <!-- Navigation-->
+        <%-include('./particals/navbar') %>
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Xin chào!!!</h1>
+                            <span class="subheading">Xem chúng ta có gì ở dưới này nào!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <!-- Post preview-->
+                    <% posts.forEach(function(post,index) { %>
+                        <div class="post-preview">
+                            <a href="/post/detail/<%= post._id %>">
+                                <h2 class="post-title"><%= post.title %></h2>
+                                <h3 class="post-subtitle"><%= post.description %></h3>
+                            </a>
+                            <p class="post-meta">
+                                Đăng bởi
+                                <a href="#!"><%= post.author %></a>
+                                vào <%= post.createdAt.toDateString() %>
+                            </p>
+                        </div>
+                        <!-- Divider-->
+                        <hr class="my-4" />                
+                    <% }); 
+                    %>
+                    <!-- Pager-->
+                    <div class="d-flex" style="justify-content: space-between;" >
+                        <% if(error) { %>
+                                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href= "/?next=<%= prevPage %>" >← Blog mới hơn</a></div>
+                            <% } else { %> 
+                                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href= "/?next=<%= prevPage %>" >← Blogs mới hơn</a></div>
+                                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href= "?next=<%= nextPage %>" >Blogs cũ hơn →</a></div>
+                                <% }
+                            
+                        %>                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <%-include('./particals/footer') %>
+        <!-- Bootstrap core JS-->
+        <%-include('./particals/script') %>
+    </body>
+</html>
